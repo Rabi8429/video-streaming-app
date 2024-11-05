@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+// frontend/src/App.js
+import React, { useState } from 'react';
+import VideoUpload from './components/VideoUpload';
+import VideoPlayer from './components/VideoPlayer';
 
 function App() {
+  const [videoUrl, setVideoUrl] = useState('');
+
+  const handleVideoUpload = (url) => {
+    setVideoUrl(url);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Video Streaming App</h1>
+      <VideoUpload onVideoUpload={handleVideoUpload} />
+      {videoUrl && <VideoPlayer videoUrl={videoUrl} />}
     </div>
   );
 }
